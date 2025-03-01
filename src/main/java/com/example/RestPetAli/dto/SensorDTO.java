@@ -5,9 +5,13 @@ public class SensorDTO {
     public SensorDTO() {
     }
 
-    private String name;
+    public SensorDTO(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 
     private int id;
+    private String name;
 
     public String getName() {
         return name;

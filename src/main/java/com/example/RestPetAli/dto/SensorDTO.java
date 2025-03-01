@@ -1,16 +1,13 @@
 package com.example.RestPetAli.dto;
 
+import jakarta.validation.constraints.Size;
+
 public class SensorDTO {
 
     public SensorDTO() {
     }
 
-    public SensorDTO(int id, String name) {
-        this.id = id;
-        this.name = name;
-    }
-
-    private int id;
+    @Size(min = 3, max = 30, message = "Имя должно быть в пределах от 3 до 30 символов")
     private String name;
 
     public String getName() {
@@ -21,11 +18,10 @@ public class SensorDTO {
         this.name = name;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    @Override
+    public String toString() {
+        return "SensorDTO{" +
+                "name='" + name + '\'' +
+                '}';
     }
 }

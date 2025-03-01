@@ -44,4 +44,12 @@ public class Sensor {
     public void setMeasurements(List<Measurement> measurements) {
         this.measurements = measurements;
     }
+
+    @Override
+    public String toString() {
+        return "Sensor{" +
+                "id=" + id +
+                ", name='" + name +
+                '}';
+    }
 }

@@ -19,7 +19,7 @@ public class Sensor {
     private String name;
 
     @OneToMany(mappedBy = "sensor")
-    private List<Measurement> measurements;
+    private List<Measurement> measurements; // can't create getter and setter for this
 
     public int getId() {
         return id;
@@ -37,13 +37,7 @@ public class Sensor {
         this.name = name;
     }
 
-    public List<Measurement> getMeasurements() {
-        return measurements;
-    }
 
-    public void setMeasurements(List<Measurement> measurements) {
-        this.measurements = measurements;
-    }
 
     @Override
     public String toString() {

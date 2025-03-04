@@ -14,15 +14,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
-@Controller
+@RestController
 @RequestMapping("/measurements")
 public class MeasurementsController {
 
@@ -39,6 +37,13 @@ public class MeasurementsController {
         this.sensorsService = sensorsService;
         this.measurementDTOValidator = measurementDTOValidator;
         this.modelMapper = modelMapper;
+    }
+
+    @GetMapping
+    public List<MeasurementDTO> getAll() {
+        return measurementsService.findAll()
+                .stream().map(this::convertToMeasurementDTO)
+                .collect(Collectors.toList());
     }
 
     @PostMapping("/add")
@@ -69,5 +74,10 @@ public class MeasurementsController {
     public Measurement convertToMeasurement(MeasurementDTO measurementDTO) {
 
         return modelMapper.map(measurementDTO, Measurement.class);
+    }
+
+    public MeasurementDTO convertToMeasurementDTO(Measurement measurement) {
+
+        return modelMapper.map(measurement, MeasurementDTO.class);
     }
 }

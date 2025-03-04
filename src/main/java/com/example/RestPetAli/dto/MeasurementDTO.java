@@ -7,7 +7,6 @@ public class MeasurementDTO {
     public MeasurementDTO() {
     }
 
-    private int id;
 
     private float value;
 
@@ -22,14 +21,6 @@ public class MeasurementDTO {
 
     public void setSensor(Sensor sensor) {
         this.sensor = sensor;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public boolean isRaining() {

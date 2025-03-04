@@ -1,5 +1,6 @@
 package com.example.RestPetAli.services;
 
+import com.example.RestPetAli.models.Measurement;
 import com.example.RestPetAli.repositories.MeasurementsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,5 +15,10 @@ public class MeasurementsService {
     @Autowired
     public MeasurementsService(MeasurementsRepository measurementsRepository) {
         this.measurementsRepository = measurementsRepository;
+    }
+
+    @Transactional
+    public void save(Measurement measurement) {
+        measurementsRepository.save(measurement);
     }
 }

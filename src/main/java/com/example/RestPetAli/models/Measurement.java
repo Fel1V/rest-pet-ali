@@ -15,6 +15,7 @@ public class Measurement {
 
     @ManyToOne
     @JoinColumn(name = "sensor_id", referencedColumnName = "id")
+    @JoinColumn(name = "sensor_name", referencedColumnName = "name")
     private Sensor sensor;
 
     @Column(name = "value")

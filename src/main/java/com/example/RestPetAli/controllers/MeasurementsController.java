@@ -2,7 +2,9 @@ package com.example.RestPetAli.controllers;
 
 import com.example.RestPetAli.dto.MeasurementDTO;
 import com.example.RestPetAli.models.Measurement;
+import com.example.RestPetAli.models.Sensor;
 import com.example.RestPetAli.services.MeasurementsService;
+import com.example.RestPetAli.services.SensorsService;
 import com.example.RestPetAli.util.MeasurementDTOValidator;
 import com.example.RestPetAli.util.SensorNotRegistratedException;
 import jakarta.validation.Valid;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/measurements")
@@ -25,12 +28,15 @@ public class MeasurementsController {
 
     private final MeasurementsService measurementsService;
 
+    private final SensorsService sensorsService;
+
     private final MeasurementDTOValidator measurementDTOValidator;
 
     private final ModelMapper modelMapper;
 
-    public MeasurementsController(MeasurementsService measurementsService, MeasurementDTOValidator measurementDTOValidator, ModelMapper modelMapper) {
+    public MeasurementsController(MeasurementsService measurementsService, SensorsService sensorsService, MeasurementDTOValidator measurementDTOValidator, ModelMapper modelMapper) {
         this.measurementsService = measurementsService;
+        this.sensorsService = sensorsService;
         this.measurementDTOValidator = measurementDTOValidator;
         this.modelMapper = modelMapper;
     }
@@ -61,6 +67,7 @@ public class MeasurementsController {
     }
 
     public Measurement convertToMeasurement(MeasurementDTO measurementDTO) {
+
         return modelMapper.map(measurementDTO, Measurement.class);
     }
 }

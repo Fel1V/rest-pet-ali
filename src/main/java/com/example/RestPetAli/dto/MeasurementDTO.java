@@ -1,24 +1,27 @@
 package com.example.RestPetAli.dto;
 
+import com.example.RestPetAli.models.Sensor;
+
 public class MeasurementDTO {
 
     public MeasurementDTO() {
     }
 
-    private String sensorName;
-
     private int id;
-
-    private boolean raining;
 
     private float value;
 
-    public String getSensorName() {
-        return sensorName;
+    private boolean raining;
+
+    private Sensor sensor;
+
+
+    public Sensor getSensor() {
+        return sensor;
     }
 
-    public void setSensorName(String sensorName) {
-        this.sensorName = sensorName;
+    public void setSensor(Sensor sensor) {
+        this.sensor = sensor;
     }
 
     public int getId() {

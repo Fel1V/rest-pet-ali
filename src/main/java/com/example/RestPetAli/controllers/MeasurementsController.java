@@ -46,6 +46,11 @@ public class MeasurementsController {
                 .collect(Collectors.toList());
     }
 
+    @GetMapping("rainyDaysCount")
+    public int rainyDaysCount() {
+        return measurementsService.rainyDaysCount();
+    }
+
     @PostMapping("/add")
     public ResponseEntity<HttpStatus> add(@RequestBody @Valid MeasurementDTO measurementDTO,
                                           BindingResult bindingResult) {

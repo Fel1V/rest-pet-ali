@@ -28,6 +28,10 @@ public class MeasurementsService {
         return measurementsRepository.findAll();
     }
 
+    public int rainyDaysCount() {
+        return measurementsRepository.findAllByRaining(true).size();
+    }
+
     @Transactional
     public void save(Measurement measurement) {
 //        Sensor sensor = sensorsRepository.findByName(measurement.getSensor().getName()).get();

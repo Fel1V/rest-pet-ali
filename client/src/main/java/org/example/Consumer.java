@@ -1,12 +1,12 @@
 package org.example;
 
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 /**
  * Hello world!
@@ -17,10 +17,13 @@ public class Consumer {
     private static final RestTemplate REST_TEMPLATE = new RestTemplate();
     private static final String SENSOR_REGISTRATION_URL = "http://localhost:8080/sensors/registration";
     private static final String MEASUREMENTS_URL = "http://localhost:8080/measurements/add";
+    private static final String GET_MEASUREMENTS_URL = "http://localhost:8080/measurements";
 
     public static void main(String[] args) {
         Sensor sensor = registerSensor(""); // Введите уникальное имя
         sendRequests(sensor);
+
+        getMeasurements().forEach(System.out::println);
     }
 
     public static Sensor registerSensor(String name) {
@@ -45,5 +48,14 @@ public class Consumer {
         jsonToSend.put("sensor", sensor);
 
         return new HttpEntity<>(jsonToSend);
+    }
+
+    private static List<Measurement> getMeasurements() {
+        ResponseEntity<List<Measurement>> response =
+                REST_TEMPLATE.exchange(GET_MEASUREMENTS_URL,
+                        HttpMethod.GET, null, new ParameterizedTypeReference<List<Measurement>>() {
+                        });
+
+        return response.getBody();
     }
 }
